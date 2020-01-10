@@ -1,14 +1,21 @@
+//Dette er både oppgave 2.3 og bonusoppgavene.
+
 import java.util.ArrayList;
 import java.util.Scanner; 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.FileNotFoundException;
 
-//Dette er både oppgave 2.3 og bonusoppgavene. 
 
 class Oblig23 {
     
+    private static Scanner scanner; 
     private static ArrayList<Planet> planetList = new ArrayList<Planet>();
     private static boolean running = true; 
+    private static String planetsFilePath = "Planets.txt"; 
 
-    private static void addNewPlanet(Scanner scanner) {
+    private static void addNewPlanet() {
 
         System.out.print("Skriv inn navn på planeten: ");
         String name = scanner.next();
@@ -25,7 +32,7 @@ class Oblig23 {
         System.out.println("La til en ny planet: ");
         planet.print(); 
     }
-    private static void updatePlanet(Scanner scanner) {
+    private static void updatePlanet() {
         System.out.print("\nSkriv inn id på planeten du vil endre på: ");
 
         int id = scanner.nextInt(); 
@@ -50,7 +57,7 @@ class Oblig23 {
 
         System.out.println("\nPlaneten er endret.\n");
     }
-    private static void deletePlanet(Scanner scanner) {
+    private static void deletePlanet() {
         System.out.print("Skriv inn id på planeten: ");
 
         int id = scanner.nextInt();
@@ -66,13 +73,67 @@ class Oblig23 {
 
     private static void listPlanets() {
         
-        System.out.println("Liste over alle planeter: ");
+        System.out.println("Liste over alle planeter:\n" );
 
         for(int i = 0; i < planetList.size(); i++) {
 
             planetList.get(i).print();
             System.out.println("");
         }
+    }
+    private static void readPlanetFile()  {
+
+        try {
+
+            File file = new File(planetsFilePath); 
+    
+            Scanner fileScanner = new Scanner(file); 
+            
+            while(fileScanner.hasNextLine()) {
+
+                String[] splitted = fileScanner.nextLine().split(";"); 
+
+                Planet p = new Planet(planetList.size(),splitted[0],Double.parseDouble(splitted[1]),Double.parseDouble(splitted[2]));
+                planetList.add(p); 
+            }
+
+            fileScanner.close(); 
+            
+        } catch(FileNotFoundException e) {
+            System.out.println("Eksisterer " + planetsFilePath + " ?");
+            System.out.println(e.toString());
+
+            //throw e; 
+
+        } 
+    }
+    private static void writePlanetFile() {
+
+        try {
+            File file = new File(planetsFilePath); 
+
+            FileWriter fileWriter = new FileWriter(file);
+
+            for(int i = 0; i < planetList.size(); i++) {
+
+                Planet p = planetList.get(i); 
+                
+                fileWriter.write(p.getName() + ";");
+                fileWriter.write(p.getRadius() + ";");
+                fileWriter.write(p.getGravity() + ";");
+
+                if(planetList.size() > i - 1)
+                    fileWriter.write("\n"); 
+            }
+
+            fileWriter.flush();
+            fileWriter.close();
+
+        } catch(IOException e) {
+            System.out.println("Kunne ikke skrive til filen.");
+            System.out.println(e.toString());
+        }
+
     }
     private static void printAllActions() {
         System.out.println("\nSkriv inn 1 for å legge til en ny planet.");
@@ -81,7 +142,7 @@ class Oblig23 {
         System.out.println("Skriv inn 4 for å liste alle planeter.");
         System.out.println("Skriv inn 5 for å avslutte. \n");
     }
-    private static void chooseAction(Scanner scanner) {
+    private static void chooseAction() {
 
         System.out.print("Kommando (skriv 0 for alle kommandoer): "); 
         int choice = scanner.nextInt(); 
@@ -91,87 +152,38 @@ class Oblig23 {
                 printAllActions();
             break; 
             case 1: 
-                addNewPlanet(scanner); 
+                addNewPlanet(); 
+                writePlanetFile();
             break; 
             case 2: 
-                updatePlanet(scanner); 
+                updatePlanet(); 
+                writePlanetFile();
             break; 
             case 3: 
-                deletePlanet(scanner);
+                deletePlanet();
+                writePlanetFile();
             break; 
             case 4: 
                 listPlanets();
             break;
             case 5: 
-                System.exit(0);
+                running = false; // Dette vil gjøre at while loopen i main ikke kjører lenger og programmet lukkes på riktig måte. 
             break; 
             default: 
                 System.out.println(choice + " er feil.");
-                chooseAction(scanner);
-            break; 
+                chooseAction();
+            break;
         }
     }
     public static void main(String[] args) {
         
-        Scanner scanner = new Scanner(System.in); 
+        scanner = new Scanner(System.in); 
 
-        while(running) chooseAction(scanner);
+        readPlanetFile();
+
+        while(running) chooseAction();
         
         scanner.close(); 
 
-    }
-}
-class Planet {
-
-    private int id; 
-    private String name; 
-    private double radius;
-    private double gravity; 
-    
-    public void SetId(int newId) {
-        id = newId; 
-    }
-
-    public int getId() {
-        return id; 
-    }
-
-    public void setName(String newName) {
-        name = newName; 
-    }
-
-    public String getName() {
-        return name; 
-    }
-
-    public void setRadius(double newRadius) {
-        radius = newRadius; 
-    }
-
-    public double getRadius() {
-        return radius; 
-    }
-
-    public void setGravity(double newGravity) {
-        gravity = newGravity; 
-    }
-
-    public double getGravity() {
-        return gravity;
-    }
-
-    public void print() {
-
-        System.out.println("ID: " + id);
-        System.out.println("Name: " + name);
-        System.out.println("Radius: " + radius + " km");
-        System.out.println("Gravity: " + gravity + " m/s²" + "\n");
-    }
-
-    public Planet(int _id, String _name, double _radius, double _gravity) {
-        id = _id; 
-        name = _name; 
-        radius = _radius; 
-        gravity = _gravity; 
     }
 }
