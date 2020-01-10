@@ -7,8 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 
-
-public class Oblig23 {
+public class Oppgave2_3 {
     
     private static Scanner scanner; 
     private static ArrayList<Planet> planetList = new ArrayList<Planet>();

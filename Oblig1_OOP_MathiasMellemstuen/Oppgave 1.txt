@@ -1,4 +1,4 @@
-Oppgave 1.1 
+﻿Oppgave 1.1 
 
 javac: 
 javac tar en eller flere *.java filer og kompilerer det til bytecode.
@@ -34,7 +34,7 @@ Oppgave 1.4
 
 Hva er en class? 
 Klasser er veldig sentralt i OOP. En klasse er en måte å struktere kode. En klasse kan inneholde
-variabler og metoder. En kan inneholde en constructor. 
+variabler og metoder. En klasse kan inneholde en constructor. 
 
 Hva er et object? 
 Når du lager en variabel som inneholder en klasse er dette ett objekt. 

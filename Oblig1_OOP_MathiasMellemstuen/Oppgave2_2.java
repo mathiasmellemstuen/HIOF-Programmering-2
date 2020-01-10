@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Oblig22 {
+public class Oppgave2_2 {
 
     public static double moonToEarthPercentage = 0.17;
     public static double CalculateMoonWeightFromEarthWeight(double yourEarthWeight) {
