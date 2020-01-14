@@ -1,7 +1,8 @@
 //Dette er både oppgave 2.3 og bonusoppgavene.
 
 import java.util.ArrayList;
-import java.util.Scanner; 
+import java.util.Locale;
+import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,10 +21,10 @@ public class Oppgave2_3 {
         String name = scanner.next();
         
         System.out.print("Skriv inn radius på planeten: ");
-        double radius = scanner.nextDouble();
+        double radius = retryUntilValidDoble();
 
         System.out.print("Skriv inn gravitasjonen på planeten: ");
-        double gravity = scanner.nextDouble(); 
+        double gravity = retryUntilValidDoble();
 
 
         //Lager en ny planet fra verdiene skrevet inn i terminalen og legger den til i planetList. 
@@ -47,10 +48,10 @@ public class Oppgave2_3 {
         String name = scanner.next();
         
         System.out.print("Skriv inn radius på planeten: ");
-        double radius = scanner.nextDouble();
+        double radius = retryUntilValidDoble();
 
         System.out.print("Skriv inn gravitasjonen på planeten: ");
-        double gravity = scanner.nextDouble(); 
+        double gravity = retryUntilValidDoble();
 
         //Oppdaterer verdiene som er skrevet inn på planeten. 
         planetList.get(id).setName(name);
@@ -74,7 +75,6 @@ public class Oppgave2_3 {
         }
         System.out.println("Finner ikke en planet med id: " + id + "\n");
     }
-
     private static void listPlanets() {
         
         System.out.println("Liste over alle planeter:\n" );
@@ -115,6 +115,7 @@ public class Oppgave2_3 {
     private static void writePlanetFile() {
 
         try {
+            
             File file = new File(planetsFilePath); 
 
             FileWriter fileWriter = new FileWriter(file);
@@ -135,7 +136,6 @@ public class Oppgave2_3 {
                 if(planetList.size() > i - 1)
                     fileWriter.write("\n"); 
             }
-
             fileWriter.flush();
             fileWriter.close();
 
@@ -152,28 +152,73 @@ public class Oppgave2_3 {
         System.out.println("Skriv inn 4 for å liste alle planeter.");
         System.out.println("Skriv inn 5 for å avslutte. \n");
     }
+    private static void clearConsole() {
+    
+        try {
+            
+            String os = System.getProperty("os.name");
+
+            if (os.contains("Windows")) {
+                //Runtime.getRuntime().exec("cls"); //Fungerer ikke på windows.
+
+            }
+            else  {
+                System.out.print("\033[H\033[2J");
+                System.out.flush(); 
+            }
+        }
+        catch (Exception e){}
+    }
+    private static boolean canParseDouble(String value) {
+        try {
+            Double.parseDouble(value); 
+
+            return true; 
+        }catch(Exception e) {
+            return false; 
+        }
+    }
+    private static Double retryUntilValidDoble() {
+        
+        String input = scanner.next(); 
+
+        if(canParseDouble(input)) {
+            return Double.parseDouble(input); 
+        }
+        else {
+            System.out.print("Denne verdien er feil, skriv inn ett tall. Bruk '.' for ','. Prøv på nytt: ");
+            retryUntilValidDoble(); 
+        }
+        return 0.0; //Treffer aldri denne linjen, må ha den uansett. 
+    }
+
     private static void chooseAction() {
 
         System.out.print("Kommando (skriv 0 for alle kommandoer): "); 
         int choice = scanner.nextInt(); 
         
         switch(choice) {
-            case 0: 
+            case 0:
+                clearConsole();
                 printAllActions();
             break; 
             case 1: 
+                clearConsole();
                 addNewPlanet(); 
                 writePlanetFile(); // Skriver endringer til Planets.txt
             break; 
             case 2: 
+                clearConsole();
                 updatePlanet(); 
                 writePlanetFile(); // Skriver endringer til Planets.txt
             break; 
             case 3: 
+                clearConsole();
                 deletePlanet();
                 writePlanetFile(); // Skriver endringer til Planets.txt
             break; 
             case 4: 
+                clearConsole();
                 listPlanets();
             break;
             case 5: 
