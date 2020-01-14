@@ -1,7 +1,6 @@
 //Dette er både oppgave 2.3 og bonusoppgavene.
 
 import java.util.ArrayList;
-import java.util.Locale;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
@@ -77,7 +76,6 @@ public class Oppgave2_3 {
     }
     private static void listPlanets() {
         
-        System.out.println("Liste over alle planeter:\n" );
 
         //Looper igjennom alle planetene i planetList og kaller print metoden. 
         for(int i = 0; i < planetList.size(); i++) {
@@ -146,11 +144,11 @@ public class Oppgave2_3 {
 
     }
     private static void printAllActions() {
-        System.out.println("\nSkriv inn 1 for å legge til en ny planet.");
-        System.out.println("Skriv inn 2 for å oppdatere en planet.");
-        System.out.println("Skriv inn 3 for å slette en planet.");
-        System.out.println("Skriv inn 4 for å liste alle planeter.");
-        System.out.println("Skriv inn 5 for å avslutte. \n");
+        System.out.println("\n1 - Legge til en ny planet.");
+        System.out.println("2 - Oppdatere en planet.");
+        System.out.println("3 - Slette en planet.");
+        System.out.println("4 - Liste alle planeter.");
+        System.out.println("5 - Avslutte. \n");
     }
     private static void clearConsole() {
     
@@ -209,19 +207,23 @@ public class Oppgave2_3 {
             break; 
             case 2: 
                 clearConsole();
+                listPlanets(); 
                 updatePlanet(); 
                 writePlanetFile(); // Skriver endringer til Planets.txt
             break; 
             case 3: 
                 clearConsole();
+                listPlanets();
                 deletePlanet();
                 writePlanetFile(); // Skriver endringer til Planets.txt
             break; 
             case 4: 
                 clearConsole();
+                System.out.println("Liste over alle planeter:\n" );
                 listPlanets();
             break;
             case 5: 
+                clearConsole();
                 running = false; // Dette vil gjøre at while loopen i main ikke kjører lenger og programmet lukkes på riktig måte. 
             break; 
             case 6:
