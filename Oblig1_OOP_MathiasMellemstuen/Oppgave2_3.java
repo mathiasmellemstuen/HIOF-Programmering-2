@@ -25,7 +25,6 @@ public class Oppgave2_3 {
         System.out.print("Skriv inn gravitasjonen på planeten: ");
         double gravity = retryUntilValidDoble();
 
-
         //Lager en ny planet fra verdiene skrevet inn i terminalen og legger den til i planetList. 
         Planet planet = new Planet(planetList.size(), name, radius, gravity); 
         planetList.add(planet);
@@ -176,9 +175,9 @@ public class Oppgave2_3 {
             return false; 
         }
     }
-    private static Double retryUntilValidDoble() {
+    private static double retryUntilValidDoble() {
         
-        String input = scanner.next(); 
+        String input = scanner.next();
 
         if(canParseDouble(input)) {
             return Double.parseDouble(input); 

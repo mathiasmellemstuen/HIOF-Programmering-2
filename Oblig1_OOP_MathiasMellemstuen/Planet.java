@@ -47,11 +47,11 @@ public class Planet {
     }
 
     //Constructor. Alle variabler til planeten må settes i konstruktoren som parametere. 
-    public Planet(int _id, String _name, double _radius, double _gravity) {
-        id = _id; 
-        name = _name; 
-        radius = _radius; 
-        gravity = _gravity; 
+    public Planet(int id, String name, double radius, double gravity) {
+        this.id = id; 
+        this.name = name; 
+        this.radius = radius; 
+        this.gravity = gravity; 
     }
 
     /*
