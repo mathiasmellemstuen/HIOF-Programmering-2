@@ -6,32 +6,32 @@ public class Planet {
     private double gravity; 
     
     // Getter / setters til name, radius, gravity, id. 
-    public void SetId(int newId) {
-        id = newId; 
+    public void SetId(int id) {
+        this.id = id; 
     }
 
     public int getId() {
         return id; 
     }
 
-    public void setName(String newName) {
-        name = newName; 
+    public void setName(String name) {
+        this.name = name; 
     }
 
     public String getName() {
         return name; 
     }
 
-    public void setRadius(double newRadius) {
-        radius = newRadius; 
+    public void setRadius(double radius) {
+        this.radius = radius; 
     }
 
     public double getRadius() {
         return radius; 
     }
 
-    public void setGravity(double newGravity) {
-        gravity = newGravity; 
+    public void setGravity(double gravity) {
+        this.radius = gravity; 
     }
 
     public double getGravity() {
