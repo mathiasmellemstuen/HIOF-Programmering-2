@@ -1,5 +1,8 @@
 package com.company;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 public class CelestialBody {
     
     protected String name;
@@ -25,9 +28,15 @@ public class CelestialBody {
         this.mass = mass;
     }
 
+    public double getSurfaceGravity() {
+
+        double G = 0.00000000006674;
+        double radiusInMetersSquared = (radius * 1000) * (radius * 1000);
+        return (G * mass) / radiusInMetersSquared;
+    }
+
     public String toString() {
-        String description =
-                name + " har en masse på: " + this.mass + " kg og en radius på " + radius + " km.";
+        String description = name + " har en masse på: " + this.mass + " kg og en radius på " + radius + " km.";
         return description;
     }
     public CelestialBody(String name, double radius, double mass) {

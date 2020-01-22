@@ -13,7 +13,7 @@ public class Star extends CelestialBody {
 
     @Override
     public String toString() {
-        
+
         String description = super.toString() + " " + name +  " har en temperatur på: " + effectiveTemp + " grader celcius. ";
         return description;
     }
