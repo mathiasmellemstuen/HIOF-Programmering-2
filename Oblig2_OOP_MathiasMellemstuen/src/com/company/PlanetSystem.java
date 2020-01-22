@@ -50,8 +50,11 @@ public class PlanetSystem {
     }
     public void removePlanet(int index) {
 
-        if(index < 0 || index >= planets.size())
+        if(index < 0 || index >= planets.size()) {
+            System.out.println("En planet med den indeksen finnes ikke.");
             return;
+
+        }
 
         planets.remove(index);
     }
