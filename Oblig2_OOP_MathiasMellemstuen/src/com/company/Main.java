@@ -30,6 +30,6 @@ public class Main {
         System.out.println(solarSystem.toString());
         System.out.println(jupiter.toString());
 
-        System.out.println(SIUnitToAstromicalUnit.convertKgToMjup(sun.getMass()));
+        System.out.println(SIUnitToAstromicalUnit.convertKgToMsun(sun.getMass()));
     }
 }
