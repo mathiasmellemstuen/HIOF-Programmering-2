@@ -1,0 +1,6 @@
+[submodule "HIOF-Programmering-2-Oblig-1"]
+	path = HIOF-Programmering-2-Oblig-1
+	url = https://github.com/mathiasmellemstuen/HIOF-Programmering-2-Oblig-1
+[submodule "HIOF-Programmering-2-Oblig-2"]
+	path = HIOF-Programmering-2-Oblig-2
+	url = https://github.com/mathiasmellemstuen/HIOF-Programmering-2-Oblig-2
