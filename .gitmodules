@@ -13,3 +13,6 @@
 [submodule "HIOF-Programmering-2-Oblig-5"]
 	path = HIOF-Programmering-2-Oblig-5
 	url = https://github.com/mathiasmellemstuen/HIOF-Programmering-2-Oblig-5.git
+[submodule "HIOF-Programmering-2-Oblig-6"]
+	path = HIOF-Programmering-2-Oblig-6
+	url = https://github.com/mathiasmellemstuen/HIOF-Programmering-2-Oblig-6.git
